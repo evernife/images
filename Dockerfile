@@ -9,6 +9,8 @@ LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
 
 RUN apt-get update -y \
  && apt-get install -y curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 \
+ && apt-get install wget \
+ && apt-get install unzip \
  && useradd -d /home/container -m container
 
 #YourKit Start
