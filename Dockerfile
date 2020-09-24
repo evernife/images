@@ -10,7 +10,17 @@ LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
 RUN apt-get update -y \
  && apt-get install -y curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 \
  && useradd -d /home/container -m container
- 
+
+#YourKit Start
+RUN wget https://www.yourkit.com/download/docker/YourKit-JavaProfiler-2020.9-docker.zip -P /tmp/ && \
+  unzip /tmp/YourKit-JavaProfiler-2020.9-docker.zip -d /usr/local && \
+  rm /tmp/YourKit-JavaProfiler-2020.9-docker.zip
+
+RUN apk add --no-cache libc6-compat
+
+ENV LD_LIBRARY_PATH=/lib64
+#Yourkit End
+
 USER container
 ENV  USER=container HOME=/home/container
 
